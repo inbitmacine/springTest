@@ -8,19 +8,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.domain.Customer;
-import com.example.service.CustomerService;
+import com.example.domain.User;
+import com.example.service.UserService;
 
 @ComponentScan("com.example.*")
 @Controller
 public class ApControler {
 	@Autowired
-	CustomerService customerService;
+	UserService userService;
 
 	@RequestMapping("/apGate")
 	String apGate(Model model) {
-	   	List<Customer> customers = customerService.findAll();
-	   	model.addAttribute("users", customers);
+	   	List<User> users = userService.findAll();
+	   	model.addAttribute("users", users);
 	   	return "gate";
 	}
 }

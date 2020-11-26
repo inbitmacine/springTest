@@ -10,14 +10,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "user")
+@Table(name = "customer")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+public class User {
 	@Id
+	private Integer id;
 	@Column(nullable = false)
-	private String id;
-	@Column(nullable = false)
-	private String name;
+private String name;
 }
