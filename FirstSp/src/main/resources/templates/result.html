@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>よろろろろ～</title>
+</head>
+<body>
+	<h1>よろ語</h1>
+<div th:each="sentence:${responseVal}">
+	<p th:text="${sentence}"></p>
+	</div>
+	<img th:src="@{/img/syan.jpg}" alt="格が違う">
+</body>
+</html>

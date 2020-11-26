@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>よろドッグ!!</title>
+</head>
+<body>
+<h1>誤チェストでごわす</h1>
+よろろ～ん<br>
+薩摩っす<br>
+<p><strong>すっす言ってないっす</strong></p>
+ <form action="/resultCtrl" method="post">
+    <p><textarea name="val" cols="30" rows="5"></textarea></p>
+    <p><input type="submit" value="送るっす"></p>
+</form>
+ <p><a th:href="@{gate}">真面目なやつ</a></p>
+<img th:src="@{/img/aff.jpg}" alt="無料">
+</body>
+</html>
