@@ -1,4 +1,4 @@
-package com.example.domain;
+package com.example.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,13 +10,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "test")
+@Table(name = "user")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
 	@Id
+	@Column(name="id")
 	private Integer id;
-	@Column(nullable = false)
+	@Column(name="name")
 private String name;
 }

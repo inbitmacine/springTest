@@ -13,7 +13,11 @@
     <p><textarea name="val" cols="30" rows="5"></textarea></p>
     <p><input type="submit" value="送るっす"></p>
 </form>
- <p><a th:href="@{gate}">真面目なやつ</a></p>
+
+<form method="get" name="form1" action="/apGate">
+
+ <p><a href="javascript:form1.submit()">真面目なやつ</a></p>
+ </form>
 <img th:src="@{/img/aff.jpg}" alt="無料">
 </body>
 </html>
