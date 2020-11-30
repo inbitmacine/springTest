@@ -2,20 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>ユーザーっす</title>
+<title>ユーザー</title>
 </head>
 <body>
-</head>
-<body>
-	<table>
+    <table>
         <tr>
             <th>ID</th>
             <th>名前</th>
         </tr>
-		<tr th:each="user : ${users}" th:object="${data}">
-			<td th:text="*{id}"></td>
-			<td th:text="*{name}"></td>
-		</tr>
-	</table>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.name}"></td>
+        </tr>
+    </table>
 </body>
 </html>

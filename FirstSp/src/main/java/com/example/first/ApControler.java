@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.example.entity.User;
 import com.example.service.UserService;
@@ -15,7 +15,7 @@ public class ApControler {
 	@Autowired
 	UserService userService;
 
-	@RequestMapping("/apGate")
+	@GetMapping("/apGate")
 	String apGate(Model model) {
 	   	List<User> user = userService.findAll();
 	   	model.addAttribute("users", user);
