@@ -6,9 +6,13 @@
 </head>
 <body>
 	<h1>よろ語</h1>
+	<form method="post" th:action="@{/logout}">
+	     <input type="submit" value="logout">
+	</form>
 <div th:each="sentence:${responseVal}">
 	<p th:text="${sentence}"></p>
 	</div>
+	<p><a th:href="@{/index}">トップっす</a></p>
 	<img th:src="@{/img/syan.jpg}" alt="格が違う">
 </body>
 </html>

@@ -14,10 +14,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class ProtoUser {
 	@Id
 	@Column(name="id")
 	private Integer id;
 	@Column(name="name")
-private String name;
+	private String name;
+	@Column(name="pass")
+	private String pass;
 }
