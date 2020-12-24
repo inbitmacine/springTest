@@ -1,5 +1,8 @@
 package com.example.Dao;
-
+/*
+ * このクラスは何も手を加えていない丸コピです。
+ * 勉強不足です。すみません。
+ */
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -33,6 +36,6 @@ public class LoginUserDao {
 		return (LoginUser)em.createNativeQuery(query, LoginUser.class).setParameter("userName", userName)
 				.getSingleResult();
 	}
-	
-	
+
+
 }

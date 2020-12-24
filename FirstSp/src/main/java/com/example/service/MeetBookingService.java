@@ -1,7 +1,5 @@
 package com.example.service;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +18,7 @@ public class MeetBookingService {
 
 	@Transactional
 	public void insertUser(Long meetId,String name,String room,
-			  				  LocalDate day,LocalTime start,LocalTime end)
+			  				  int day,int start,int end)
 	{
 		MeetBooking meet = new MeetBooking();
 		meet.setMeetId(meetId);

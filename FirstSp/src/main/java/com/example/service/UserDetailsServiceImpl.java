@@ -1,4 +1,9 @@
 package com.example.service;
+/*
+ * ログインユーザーについてのサービスクラス。
+ * UserDetailServiceを実装しています。
+ * このインターフェイスを使ってSpringSecurityさんがログインの認証をしてくれます。
+ */
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +42,7 @@ public class UserDetailsServiceImpl implements UserDetailsService{
             throw new UsernameNotFoundException("User" + userName + "was not found in the database");
         }
         //権限のリスト
-        //AdminやUserなどが存在するが、今回は利用しないのでUSERのみを仮で設定
+        //AdminやUserなどが存在するが、今回は利用しないのでUSERというダミー権限です。
         //権限を利用する場合は、DB上で権限テーブル、ユーザ権限テーブルを作成し管理が必要
         List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
         GrantedAuthority authority = new SimpleGrantedAuthority("USER");
@@ -50,18 +55,23 @@ public class UserDetailsServiceImpl implements UserDetailsService{
         return userDetails;
     }
 
+    //ユーザを追加するメソッド
     @Transactional
     public void insertUser(String name, String password, String mail) {
                 LoginUser user = new LoginUser();
         user.setUserName(name);
+
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        //暗号化して格納
         user.setPassword(encoder.encode(password));
+        //mailが空欄でなければ暗号化して格納。空の時はNoDataで格納
         if(mail!="") {
         	user.setMail(encoder.encode(mail));
         }
         else {
         	user.setMail("NoData");
         }
+
         userRepository.save(user);
     }
 

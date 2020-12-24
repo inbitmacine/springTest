@@ -5,7 +5,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import lombok.Data;
-
+/*
+ * 会議室の情報を保存するクラスです。
+ * タイムリーフ君がこれを使っていい感じにデータを表示する(予定)
+ */
 @Data
 public class MyBean implements Serializable {
 	private int myNumber;

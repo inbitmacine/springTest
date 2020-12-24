@@ -9,11 +9,7 @@ import javax.persistence.Table;
 
 import lombok.Data;
 
-/**
- * ログインユーザのユーザ名、パスワードを格納するためのEntity
- * @author aoi
- *
- */
+
 @Entity
 @Table(name = "loginuser")
 @Data

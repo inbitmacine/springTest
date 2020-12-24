@@ -1,5 +1,8 @@
 package com.example.first;
-
+/*
+ * まずこのクラスが起動します。
+ * クラスの読み込み先の指定などを行ってます
+ */
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;

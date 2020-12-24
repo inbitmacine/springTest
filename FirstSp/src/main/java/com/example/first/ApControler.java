@@ -1,4 +1,7 @@
 package com.example.first;
+/*
+ * メイン機能のコントローラになります。
+ */
 
 import java.util.List;
 
@@ -27,11 +30,16 @@ public class ApControler {
 
 	@GetMapping("/apGate")
 	String apGate(Model model) {
+		//ユーザ一覧を取得
 	   	List<ProtoUser> user = userService.findAll();
 	   	model.addAttribute("users", user);
+
+	   	//ログイン中のユーザ名を取得
 	   	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 	   	String Name = auth.getName();
 	   	model.addAttribute("Name", Name);
+
+
 	   	return "gate";
 	}
 
@@ -40,15 +48,19 @@ public class ApControler {
 		return "create";
 	}
 
-
+	//ユーザ作成リクエスト
 	@PostMapping("join")
 	String join(RedirectAttributes redirectAttributes,@RequestParam("username")String name,@RequestParam("password") String pass,@RequestParam("mail") String mail,Model model) {
+
+		//メールアドレスがおかしかったらその旨を付け加えて入力画面へ
 		if(mail != "" && MyUtill.isMailAddress(mail)==false) {
 			model.addAttribute("error", true);
 			return "/create";
 		}
 
+		//情報登録
 		loginUserService.insertUser(name,pass,mail);
+
 		return "success";
 	}
 

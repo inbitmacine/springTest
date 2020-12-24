@@ -14,7 +14,7 @@ import com.example.repository.UserRepository;
 public class UserService {
 	@Autowired
 	UserRepository userRepository;
-
+//全ユーザ表示。テスト用
 	public List<ProtoUser> findAll() {
 		return userRepository.findAll();
 	}

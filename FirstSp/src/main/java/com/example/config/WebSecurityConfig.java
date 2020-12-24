@@ -14,10 +14,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import com.example.service.UserDetailsServiceImpl;
 
 /**
- * SpringSecurityを利用するための設定クラス
- * ログイン処理でのパラメータ、画面遷移や認証処理でのデータアクセス先を設定する
- * @author aoi
- *
+ * SpringSecurityの設定ファイルです
+ *ログインの情報や、認証不要のページを設定しています。
  */
 @Configuration
 @EnableWebSecurity
@@ -27,7 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
 
-	//フォームの値と比較するDBから取得したパスワードは暗号化されているのでフォームの値も暗号化するために利用
+	//パスワードの暗号化をやってくれるクラスの設定
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -35,8 +33,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	/**
-	 * 認可設定を無視するリクエストを設定
-	 * 静的リソース(image,javascript,css)を認可処理の対象から除外する
+	 * 以下の場所は許可なしでアクセスできます
+	 * 静的リソース(画像、描画の設定、スクリプト)が格納されています
+	 * 許可しないと画面が寂しいことになります。
 	 */
 	@Override
     public void configure(WebSecurity web) throws Exception {
@@ -47,13 +46,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                             );
     }
 
-	/**
-	 * 認証・認可の情報を設定する
-	 * 画面遷移のURL・パラメータを取得するname属性の値を設定
-	 */
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
+		/**
+		 * 認証不要なURL・パラメータを取得するname属性の値を設定
+		 */
 		    .authorizeRequests()
 		    	.mvcMatchers("/index").permitAll()
 		    	.mvcMatchers("/create").permitAll()
@@ -63,13 +62,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		    	.mvcMatchers("/result").permitAll()
 		        .anyRequest().authenticated()
 		        .and()
+		        /*
+		         * ログイン周りの設定は以下に記述
+		         */
 		    .formLogin()
 		        .loginPage("/login") //ログインページはコントローラを経由しないのでViewNameとの紐付けが必要
 		        .loginProcessingUrl("/sign_in") //フォームのSubmitURL、このURLへリクエストが送られると認証処理が実行される
 		        .usernameParameter("username") //リクエストパラメータのname属性を明示
 		        .passwordParameter("password")
-		        .successForwardUrl("/index")
-		        .failureUrl("/login?error")
+		        .successForwardUrl("/index")//ログイン成功したらここに飛びます
+		        .failureUrl("/login?error")//失敗時
 		        .permitAll()
 		        .and()
 		    .logout()
@@ -84,7 +86,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	/**
 	 * 認証時に利用するデータソースを定義する設定メソッド
 	 * ここではDBから取得したユーザ情報をuserDetailsServiceへセットすることで認証時の比較情報としている
-	 * @param auth
 	 * @throws Exception
 	 */
 	@Autowired

@@ -1,5 +1,9 @@
 package com.example.first;
 
+/*
+ * 最初に作ったコントローラです
+ * メイン機能以外はこちらに実装していく予定
+ */
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
