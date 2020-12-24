@@ -2,8 +2,12 @@ package com.example.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import lombok.Data;
 
 /**
  * ログインユーザのユーザ名、パスワードを格納するためのEntity
@@ -12,8 +16,10 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "loginuser")
+@Data
 public class LoginUser {
 
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id")
 	@Id
 	private Long userId;
@@ -24,21 +30,8 @@ public class LoginUser {
 	@Column(name = "password")
 	private String password;
 
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
+	@Column(name = "mail")
+	private String mail;
 
 
 

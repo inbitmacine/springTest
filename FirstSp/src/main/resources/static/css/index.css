@@ -1,0 +1,10 @@
+.btn-color {
+	background-color: red;
+}
+.img-fluid{
+	 max-width: 100%;
+	 height: auto;
+}
+body {
+  color: pink-500;
+}

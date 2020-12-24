@@ -33,5 +33,6 @@ public class LoginUserDao {
 		return (LoginUser)em.createNativeQuery(query, LoginUser.class).setParameter("userName", userName)
 				.getSingleResult();
 	}
-
+	
+	
 }

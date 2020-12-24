@@ -15,7 +15,8 @@
             <td th:text="${user.name}"></td>
         </tr>
     </table>
-    <strong><div th:text="${Name}"></div></strong>
+
+   <strong><div th:text="${Name}"></div></strong>
     <p><a th:href="@{/index}">トップっす</a></p>
     <form method="post" th:action="@{/logout}">
 	     <input type="submit" value="logout">

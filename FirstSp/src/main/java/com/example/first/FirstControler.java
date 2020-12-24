@@ -7,18 +7,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.example.myutill.MyUtill;
 @Controller
 public class FirstControler {
-	
+
 	@RequestMapping("/index")
 	public String index(Model model) {
-		
+
 		return "index";
 	}
 
 	@PostMapping("resultCtrl")
 	String postResult(@RequestParam("val") String Val, Model model) {
-		List<String> ssu = YoroSplit.ySplit(Val);
+		List<String> ssu = MyUtill.ySplit(Val);
 		model.addAttribute("responseVal",ssu);
 		return "result";
 	}

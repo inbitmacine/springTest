@@ -2,25 +2,40 @@
 <html xmlns:th="http://thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>よろドッグ!!</title>
+ 	<!-- BootstrapのCSS読み込み -->
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet">
+    <!-- BootstrapのCSS読み込み -->
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <!-- BootstrapのJS読み込み -->
+    <script th:src="@{js/bootstrap.min.js}"></script>
+	<title>よろドッグ!!</title>
 </head>
 <body>
-<h1>誤チェストでごわす</h1>
-よろろ～ん<br>
-薩摩っす<br>
-<p><strong>すっす言ってないっす</strong></p>
- <form th:action="@{/resultCtrl}" method="post">
-    <p><textarea name="val" cols="30" rows="5"></textarea></p>
-    <p><input type="submit" value="送るっす"></p>
-</form>
+<header style="background-color:pink"><font color="white">誤チェストでごわす</font></header>
+<div class="container-fluid">
+	<div class="row">
+	    <div class="col-sm-12" style="background-color:pink;">
 
-<form method="get" name="form1" action="/apGate">
 
- <p><a href="javascript:form1.submit()">真面目なやつ</a></p>
- </form>
- <form method="post" th:action="@{/logout}">
-	     <input type="submit" value="logout">
-	</form>
-<img th:src="@{/img/aff.jpg}" alt="無料">
+
+		よろろ～ん<br>
+		薩摩っす<br>
+		<p><strong>すっす言ってないっす</strong></p>
+		<form th:action="@{/resultCtrl}" method="post">
+		    <p><textarea name="val" cols="30" rows="5"></textarea></p>
+		    <p><input type="submit" value="送るっす"></p>
+		</form>
+
+		<form method="get" name="form1" action="/apGate">
+
+			<p><a href="javascript:form1.submit()">真面目なやつ</a></p>
+		</form>
+		<form method="post" th:action="@{/logout}">
+			<input type="submit" value="logout">
+			</form>
+		<footer><img th:src="@{/img/aff.jpg}"class="img-fluid" alt="無料"></footer>
+		</div>
+	</div>
+</div>
 </body>
 </html>

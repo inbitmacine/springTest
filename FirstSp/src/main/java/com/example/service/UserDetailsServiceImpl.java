@@ -12,9 +12,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.Dao.LoginUserDao;
 import com.example.entity.LoginUser;
+import com.example.repository.LoginUserRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService{
@@ -22,6 +24,9 @@ public class UserDetailsServiceImpl implements UserDetailsService{
     //DBからユーザ情報を検索するメソッドを実装したクラス
     @Autowired
     private LoginUserDao userDao;
+
+    @Autowired
+    LoginUserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
@@ -38,13 +43,26 @@ public class UserDetailsServiceImpl implements UserDetailsService{
         GrantedAuthority authority = new SimpleGrantedAuthority("USER");
         grantList.add(authority);
 
-        //rawDataのパスワードは渡すことができないので、暗号化
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
         //UserDetailsはインタフェースなのでUserクラスのコンストラクタで生成したユーザオブジェクトをキャスト
-        UserDetails userDetails = (UserDetails)new User(user.getUserName(), encoder.encode(user.getPassword()),grantList);
+        UserDetails userDetails = (UserDetails)new User(user.getUserName(), user.getPassword(),grantList);
 
         return userDetails;
+    }
+
+    @Transactional
+    public void insertUser(String name, String password, String mail) {
+                LoginUser user = new LoginUser();
+        user.setUserName(name);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        user.setPassword(encoder.encode(password));
+        if(mail!="") {
+        	user.setMail(encoder.encode(mail));
+        }
+        else {
+        	user.setMail("NoData");
+        }
+        userRepository.save(user);
     }
 
 }

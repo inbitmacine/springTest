@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:if="${error==true}">
+            <p>メールアドレスがおかしいっす。登録しないなら空にするっす</p>
+             <p><a th:href="@{/index}">トップ</a></p>
+    </div>
+
+	<form th:action="@{/join}" method="post">
+	    <input type="text" name="username">お名前
+	    <br/>
+	    <input type="password" name="password">パスワード
+	    <br/>
+	    <input type="text" name="mail">メアド(任意)
+	    <br/>
+
+	    <input type="submit" value="登録っす">
+	</form>
+
+</body>
+</html>
